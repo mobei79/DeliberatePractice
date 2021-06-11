@@ -26,6 +26,7 @@ class MyThread(threading.Thread):
     def run(self):
         with open(self.path,'r') as f:
             global count
+            global info_list
             envUrl = "http://p2passet_admin_finance.local.fengjr.inc/api/getAbleWithDrawByLoanId?loanId="  # 请求URL地址
             for line in f.readlines()[self.start_index:self.end_index]:
                 line = line.strip()
@@ -197,13 +198,13 @@ if __name__=='__main__':
     """
     通过实例化threading.Thread类创建线程
     """
-    main_test_thread()
-    # main_insantiation()
+    # main_test_thread()
+    main_insantiation()
     """
     通过集成threading.Thread类的子类创建线程
     """
     # start_tm_multi = time.time()
-    # main('loanids_100k.txt',4,'7979')
+    main('loanids_100k.txt',4,'7979')
     # print(f'\n检索完毕，共检索{file_length}条数据')
     # print(key_list)
     # print('耗时',time.time()-start_tm_multi)
