@@ -1,0 +1,25 @@
+createtab_stmt
+CREATE TABLE `dwi.dwi_usr_special_list_full`(
+"  `id_card_md5` string COMMENT '身份证md5', "
+"  `mobile_md5` string COMMENT '手机号md5', "
+"  `user_id` string COMMENT '用户ID', "
+"  `is_court` int COMMENT '是否公检法名单', "
+"  `is_black` int COMMENT '是否黑名单', "
+"  `is_overdue` int COMMENT '是否逾期名单', "
+  `is_multiloan` int COMMENT '是否多头借贷')
+COMMENT 'dwi_usr_special_list_full'
+PARTITIONED BY ( 
+  `dt` string COMMENT 'dt')
+ROW FORMAT SERDE 
+  'org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe' 
+STORED AS INPUTFORMAT 
+  'org.apache.hadoop.hive.ql.io.parquet.MapredParquetInputFormat' 
+OUTPUTFORMAT 
+  'org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat'
+LOCATION
+  'hdfs://feng-cluster/user/hive/warehouse/dwi.db/dwi_usr_special_list_full'
+TBLPROPERTIES (
+"  'last_modified_by'='hdfs', "
+"  'last_modified_time'='1545733103', "
+"  'parquet.compression'='SNAPPY', "
+  'transient_lastDdlTime'='1545733103')

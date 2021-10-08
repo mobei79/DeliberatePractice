@@ -1,0 +1,15 @@
+{'LSTM_layers': 2,
+ 'base_output_dir': 'output/raw_data_72138',
+ 'batch_size': 256,
+ 'data_input_dir': 'D://Program '
+                   'Files/pythonwork/FengjrEntityPrediction/datasets/data_preprocessed/raw_data_72138',
+ 'embedding_size': 50,
+ 'hidden_size': 50,
+ 'max_num_actions': 200,
+ 'model_name': 'minerva',
+ 'model_signature': 'minerva',
+ 'output_dir': 'output/raw_data_72138/202109011445',
+ 'path_length': 4,
+ 'path_logger_file': 'output/raw_data_72138/202109011445',
+ 'test_rollouts': 20,
+ 'use_entity_embeddings': True}

@@ -1,0 +1,13 @@
+社区发现demo操作流程
+1、本地运行数据
+	需要的文件包括：python环境、model.py文件、data.csv数据文件，community算法包。
+	切换到 目录 D:\凤凰金融\凤金工作\社区发现 ；然后执行python model.py
+	程序执行，得到结果，以及result.csv文件。
+
+2、服务器端运行
+	文件地址为，8号机器，8 * * * sh /home/igraph/
+	运行方式为，登录8号机器，在目录sh /home/igraph/model/run.sh 中运行run.sh
+	也可以通过：python test.py --dc='day' --dt='2018-01-01'运行程序，其中2018-01-01是数据的起始日期。
+
+3、社区发现文件夹下面有服务器端的代码。稍微加了注释。community—detaction.py
+	

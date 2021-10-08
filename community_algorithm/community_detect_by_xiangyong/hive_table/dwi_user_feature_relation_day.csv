@@ -1,0 +1,29 @@
+createtab_stmt
+CREATE TABLE `dwi_user_feature_relation_day`(
+"  `type` int, "
+"  `from_id` string, "
+"  `to_id` string, "
+  `weight` int)
+COMMENT 'dwi_user_feature_relation_day'
+PARTITIONED BY ( 
+  `dt` string COMMENT 'dt')
+ROW FORMAT SERDE 
+  'org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe' 
+WITH SERDEPROPERTIES ( 
+"  'field.delim'='\u0001', "
+  'serialization.format'='\u0001') 
+STORED AS INPUTFORMAT 
+  'org.apache.hadoop.hive.ql.io.parquet.MapredParquetInputFormat' 
+OUTPUTFORMAT 
+  'org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat'
+LOCATION
+  'hdfs://feng-cluster/user/hive/warehouse/dwi.db/dwi_user_feature_relation_day'
+TBLPROPERTIES (
+"  'last_modified_by'='hdfs', "
+"  'last_modified_time'='1545732594', "
+"  'parquet.compression'='SNAPPY', "
+"  'spark.sql.sources.schema.numPartCols'='1', "
+"  'spark.sql.sources.schema.numParts'='1', "
+"  'spark.sql.sources.schema.part.0'='{\""type\"":\""struct\"",\""fields\"":[{\""name\"":\""type\"",\""type\"":\""integer\"",\""nullable\"":true,\""metadata\"":{\""HIVE_TYPE_STRING\"":\""int\""}},{\""name\"":\""from_id\"",\""type\"":\""string\"",\""nullable\"":true,\""metadata\"":{\""HIVE_TYPE_STRING\"":\""string\""}},{\""name\"":\""to_id\"",\""type\"":\""string\"",\""nullable\"":true,\""metadata\"":{\""HIVE_TYPE_STRING\"":\""string\""}},{\""name\"":\""weight\"",\""type\"":\""integer\"",\""nullable\"":true,\""metadata\"":{\""HIVE_TYPE_STRING\"":\""int\""}},{\""name\"":\""dt\"",\""type\"":\""string\"",\""nullable\"":true,\""metadata\"":{\""comment\"":\""dt\"",\""HIVE_TYPE_STRING\"":\""string\""}}]}', "
+"  'spark.sql.sources.schema.partCol.0'='dt', "
+  'transient_lastDdlTime'='1545732594')

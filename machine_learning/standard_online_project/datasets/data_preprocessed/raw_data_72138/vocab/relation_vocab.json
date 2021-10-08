@@ -1,0 +1,1 @@
+{"PAD": 0, "DUMMY_START_RELATION": 1, "NO_OP": 2, "UNK": 3, "HasCompanyPhone": 4, "HasCompanyAddress": 5, "HasDeviceAddress": 6, "HasApplyAddress": 7, "HasIP": 8, "HasIdCard": 9, "HasCompanyName": 10, "HasEmergencyPhone": 11, "HasHomeAddress": 12, "HasPhone": 13}

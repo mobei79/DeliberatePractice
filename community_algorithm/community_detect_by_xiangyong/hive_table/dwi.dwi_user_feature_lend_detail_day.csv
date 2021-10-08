@@ -1,0 +1,43 @@
+createtab_stmt
+CREATE TABLE `dwi.dwi_user_feature_lend_detail_day`(
+"  `user_id` string COMMENT '用户ID', "
+"  `id_card_md5` string COMMENT '身份证md5', "
+"  `login_phone_md5` string COMMENT '手机号md5', "
+"  `register_date` string COMMENT '注册日期', "
+"  `apply_id` string COMMENT '申请ID', "
+"  `apply_date` string COMMENT '申请日期', "
+"  `apply_amt` double COMMENT '申请金额', "
+"  `audit_date` string COMMENT '审核日期', "
+"  `audit_amt` double COMMENT '审核金额', "
+"  `is_pass` int COMMENT '是否审核通过', "
+"  `lend_date` string COMMENT '放款日期', "
+"  `lend_amt` double COMMENT '放款金额', "
+"  `loan_date` string COMMENT '贷款日期', "
+"  `loan_amt` double COMMENT '贷款金额', "
+"  `expire_date` string COMMENT '到期日期', "
+"  `is_expire` int COMMENT '是否到期', "
+"  `repay_date` string COMMENT '还款日期', "
+  `overdue_days` int COMMENT '逾期天数')
+COMMENT 'dwi_user_feature_lend_detail_day'
+PARTITIONED BY ( 
+  `dt` string COMMENT 'dt')
+ROW FORMAT SERDE 
+  'org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe' 
+WITH SERDEPROPERTIES ( 
+"  'field.delim'='\u0001', "
+  'serialization.format'='\u0001') 
+STORED AS INPUTFORMAT 
+  'org.apache.hadoop.hive.ql.io.parquet.MapredParquetInputFormat' 
+OUTPUTFORMAT 
+  'org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat'
+LOCATION
+  'hdfs://feng-cluster/user/hive/warehouse/dwi.db/dwi_user_feature_lend_detail_day'
+TBLPROPERTIES (
+"  'last_modified_by'='hdfs', "
+"  'last_modified_time'='1545732552', "
+"  'parquet.compression'='SNAPPY', "
+"  'spark.sql.sources.schema.numPartCols'='1', "
+"  'spark.sql.sources.schema.numParts'='1', "
+"  'spark.sql.sources.schema.part.0'='{\""type\"":\""struct\"",\""fields\"":[{\""name\"":\""user_id\"",\""type\"":\""string\"",\""nullable\"":true,\""metadata\"":{\""comment\"":\""\u7528\u6237ID\"",\""HIVE_TYPE_STRING\"":\""string\""}},{\""name\"":\""id_card_md5\"",\""type\"":\""string\"",\""nullable\"":true,\""metadata\"":{\""comment\"":\""\u8EAB\u4EFD\u8BC1md5\"",\""HIVE_TYPE_STRING\"":\""string\""}},{\""name\"":\""login_phone_md5\"",\""type\"":\""string\"",\""nullable\"":true,\""metadata\"":{\""comment\"":\""\u624B\u673A\u53F7md5\"",\""HIVE_TYPE_STRING\"":\""string\""}},{\""name\"":\""register_date\"",\""type\"":\""string\"",\""nullable\"":true,\""metadata\"":{\""comment\"":\""\u6CE8\u518C\u65E5\u671F\"",\""HIVE_TYPE_STRING\"":\""string\""}},{\""name\"":\""apply_id\"",\""type\"":\""string\"",\""nullable\"":true,\""metadata\"":{\""comment\"":\""\u7533\u8BF7ID\"",\""HIVE_TYPE_STRING\"":\""string\""}},{\""name\"":\""apply_date\"",\""type\"":\""string\"",\""nullable\"":true,\""metadata\"":{\""comment\"":\""\u7533\u8BF7\u65E5\u671F\"",\""HIVE_TYPE_STRING\"":\""string\""}},{\""name\"":\""apply_amt\"",\""type\"":\""double\"",\""nullable\"":true,\""metadata\"":{\""comment\"":\""\u7533\u8BF7\u91D1\u989D\"",\""HIVE_TYPE_STRING\"":\""double\""}},{\""name\"":\""audit_date\"",\""type\"":\""string\"",\""nullable\"":true,\""metadata\"":{\""comment\"":\""\u5BA1\u6838\u65E5\u671F\"",\""HIVE_TYPE_STRING\"":\""string\""}},{\""name\"":\""audit_amt\"",\""type\"":\""double\"",\""nullable\"":true,\""metadata\"":{\""comment\"":\""\u5BA1\u6838\u91D1\u989D\"",\""HIVE_TYPE_STRING\"":\""double\""}},{\""name\"":\""is_pass\"",\""type\"":\""integer\"",\""nullable\"":true,\""metadata\"":{\""comment\"":\""\u662F\u5426\u5BA1\u6838\u901A\u8FC7\"",\""HIVE_TYPE_STRING\"":\""int\""}},{\""name\"":\""lend_date\"",\""type\"":\""string\"",\""nullable\"":true,\""metadata\"":{\""comment\"":\""\u653E\u6B3E\u65E5\u671F\"",\""HIVE_TYPE_STRING\"":\""string\""}},{\""name\"":\""lend_amt\"",\""type\"":\""double\"",\""nullable\"":true,\""metadata\"":{\""comment\"":\""\u653E\u6B3E\u91D1\u989D\"",\""HIVE_TYPE_STRING\"":\""double\""}},{\""name\"":\""loan_date\"",\""type\"":\""string\"",\""nullable\"":true,\""metadata\"":{\""comment\"":\""\u8D37\u6B3E\u65E5\u671F\"",\""HIVE_TYPE_STRING\"":\""string\""}},{\""name\"":\""loan_amt\"",\""type\"":\""double\"",\""nullable\"":true,\""metadata\"":{\""comment\"":\""\u8D37\u6B3E\u91D1\u989D\"",\""HIVE_TYPE_STRING\"":\""double\""}},{\""name\"":\""expire_date\"",\""type\"":\""string\"",\""nullable\"":true,\""metadata\"":{\""comment\"":\""\u5230\u671F\u65E5\u671F\"",\""HIVE_TYPE_STRING\"":\""string\""}},{\""name\"":\""is_expire\"",\""type\"":\""integer\"",\""nullable\"":true,\""metadata\"":{\""comment\"":\""\u662F\u5426\u5230\u671F\"",\""HIVE_TYPE_STRING\"":\""int\""}},{\""name\"":\""repay_date\"",\""type\"":\""string\"",\""nullable\"":true,\""metadata\"":{\""comment\"":\""\u8FD8\u6B3E\u65E5\u671F\"",\""HIVE_TYPE_STRING\"":\""string\""}},{\""name\"":\""overdue_days\"",\""type\"":\""integer\"",\""nullable\"":true,\""metadata\"":{\""comment\"":\""\u903E\u671F\u5929\u6570\"",\""HIVE_TYPE_STRING\"":\""int\""}},{\""name\"":\""dt\"",\""type\"":\""string\"",\""nullable\"":true,\""metadata\"":{\""comment\"":\""dt\"",\""HIVE_TYPE_STRING\"":\""string\""}}]}', "
+"  'spark.sql.sources.schema.partCol.0'='dt', "
+  'transient_lastDdlTime'='1545732552')

@@ -1,0 +1,37 @@
+digraph Tree {
+node [shape=box, style="filled, rounded", color="black", fontname=helvetica] ;
+edge [fontname=helvetica] ;
+0 [label="脯氨酸 <= 755.0\nentropy = 1.563\nsamples = 124\nvalue = [43, 49, 32]\nclass = 雪莉", fillcolor="#f0fdf6"] ;
+1 [label="类黄酮 <= 1.265\nentropy = 1.047\nsamples = 77\nvalue = [1, 47, 29]\nclass = 雪莉", fillcolor="#b5f5d0"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="颜色强度 <= 3.75\nentropy = 0.459\nsamples = 31\nvalue = [0, 3, 28]\nclass = 贝尔摩德", fillcolor="#8e4ee8"] ;
+1 -> 2 ;
+3 [label="entropy = 0.0\nsamples = 3\nvalue = [0, 3, 0]\nclass = 雪莉", fillcolor="#39e581"] ;
+2 -> 3 ;
+4 [label="entropy = 0.0\nsamples = 28\nvalue = [0, 0, 28]\nclass = 贝尔摩德", fillcolor="#8139e5"] ;
+2 -> 4 ;
+5 [label="酒精 <= 13.145\nentropy = 0.301\nsamples = 46\nvalue = [1, 44, 1]\nclass = 雪莉", fillcolor="#42e687"] ;
+1 -> 5 ;
+6 [label="entropy = 0.0\nsamples = 42\nvalue = [0, 42, 0]\nclass = 雪莉", fillcolor="#39e581"] ;
+5 -> 6 ;
+7 [label="颜色强度 <= 4.06\nentropy = 1.5\nsamples = 4\nvalue = [1, 2, 1]\nclass = 雪莉", fillcolor="#bdf6d5"] ;
+5 -> 7 ;
+8 [label="entropy = 0.0\nsamples = 2\nvalue = [0, 2, 0]\nclass = 雪莉", fillcolor="#39e581"] ;
+7 -> 8 ;
+9 [label="花青素 <= 1.535\nentropy = 1.0\nsamples = 2\nvalue = [1, 0, 1]\nclass = 琴酒", fillcolor="#ffffff"] ;
+7 -> 9 ;
+10 [label="entropy = 0.0\nsamples = 1\nvalue = [0, 0, 1]\nclass = 贝尔摩德", fillcolor="#8139e5"] ;
+9 -> 10 ;
+11 [label="entropy = 0.0\nsamples = 1\nvalue = [1, 0, 0]\nclass = 琴酒", fillcolor="#e58139"] ;
+9 -> 11 ;
+12 [label="总酚 <= 2.05\nentropy = 0.592\nsamples = 47\nvalue = [42, 2, 3]\nclass = 琴酒", fillcolor="#e88f50"] ;
+0 -> 12 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+13 [label="entropy = 0.0\nsamples = 3\nvalue = [0, 0, 3]\nclass = 贝尔摩德", fillcolor="#8139e5"] ;
+12 -> 13 ;
+14 [label="镁 <= 135.5\nentropy = 0.267\nsamples = 44\nvalue = [42, 2, 0]\nclass = 琴酒", fillcolor="#e68742"] ;
+12 -> 14 ;
+15 [label="entropy = 0.0\nsamples = 42\nvalue = [42, 0, 0]\nclass = 琴酒", fillcolor="#e58139"] ;
+14 -> 15 ;
+16 [label="entropy = 0.0\nsamples = 2\nvalue = [0, 2, 0]\nclass = 雪莉", fillcolor="#39e581"] ;
+14 -> 16 ;
+}
