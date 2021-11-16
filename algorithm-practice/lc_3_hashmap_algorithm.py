@@ -97,7 +97,7 @@ class MyHashMapQuetionSet:
                 min_freq[i] -= 1
         return rst
 
-    """
+    """ set
     349. 两个数组的交集
     给定两个数组，编写一个函数来计算它们的交集。
     
