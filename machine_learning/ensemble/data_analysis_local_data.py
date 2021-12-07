@@ -8,7 +8,6 @@
 @desc :
 """
 import matplotlib.pyplot as plt
-
 from sklearn.metrics import accuracy_score
 from sklearn.datasets import load_boston
 from sklearn.model_selection import GridSearchCV
