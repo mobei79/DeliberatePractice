@@ -24,7 +24,7 @@ from pyspark import SparkContext
 sc = SparkContext()
 sqlContext = SQLContext(sc)
 data = sqlContext.read.format('com.databricks.spark.csv').options(header='true',
-                                          inferschema='true').load('train.csv')
+                                          inferschema='true').load('train12.csv')
 
 # 除去一些不要的列，只保留“Category,Descript”， 并展示前五行：
 drop_list = ['Dates', 'DayOfWeek', 'PdDistrict', 'Resolution', 'Address', 'X', 'Y']

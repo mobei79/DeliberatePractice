@@ -424,7 +424,7 @@ class LevelOrderTraversal:
     def maxDepth_pre(self, root) -> int: # 递归法
         # result = 0
         def get_depth(node, depth):
-            result = depth if (depth > result)  else result
+            # result = depth if (depth > result)  else result
             if not node.left and not node.right:
                 return
             if node.left: #
@@ -1022,7 +1022,7 @@ class TreeSearch:
         :return:
         """
         list_s = []
-        def get_list:
+        def get_list(root):
             if not root:return
             self.isValidBST(root.left)
             self.list_s.append(root.val)

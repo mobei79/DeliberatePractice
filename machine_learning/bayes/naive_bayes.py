@@ -17,7 +17,7 @@ from sklearn.naive_bayes import BernoulliNB
 from sklearn.metrics import log_loss
 from sklearn.cross_validation import train_test_split
 
-train = pd.read_csv("train.csv",parse_dates=['Dates'])
+train = pd.read_csv("train12.csv",parse_dates=['Dates'])
 test = pd.read_csv("test.csv",parse_dates=['Dates'])
 """ 各维度数据释义
 Date: 日期
