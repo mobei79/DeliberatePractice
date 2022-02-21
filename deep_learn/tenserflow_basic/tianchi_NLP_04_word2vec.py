@@ -75,4 +75,12 @@ def all_data2fold(fold_num, num=10000):
             batch_data = [data[i*batch_size+b] for b in range(cur_batch_size)]
             all_index[i].extend(batch_data) # extend() 函数用于在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表）。
 
+    batch_size = int(total/fold_num)
+    other_texts = []
+    other_labels = []
+    other_num = 0
+    start = 0
+
+
+
 
