@@ -90,10 +90,11 @@ def main():
     units = 64
     epochs = 4
     model = MyRNN(units)
-    model.summary()
+
     model.compile(optimizer=keras.optimizers.Adam(0.001),
                   loss=tf.losses.BinaryCrossentropy(),
                   metrics=['accuracy'])
+    model.summary()
     model.fit(db_train, epochs = epochs, validation_data=db_test)
 
     """
