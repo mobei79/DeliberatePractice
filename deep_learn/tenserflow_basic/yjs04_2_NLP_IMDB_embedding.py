@@ -52,7 +52,7 @@ for s,l in test_data:
 training_labels_final = np.array(training_labels)
 testing_labels_final = np.array(testing_labels)
 
-vocab_size= 10000# 所有超参数，便于修改优化
+vocab_size= 10000# 词典大小所有超参数，便于修改优化
 oov_tok="<OOV>"
 max_length=120
 trunc_type="post"
@@ -64,7 +64,8 @@ tokenizer.fit_on_texts(training_sentences)                      # 对训练数�
 word_index = tokenizer.word_index
 sequences = tokenizer.texts_to_sequences(training_sentences)    # 根据词典编码对句子进行序列化
 padded = pad_sequences(sequences, maxlen=max_length, truncating=trunc_type) # 原始句子长度不一致，需要阶段和补齐到固定长度
-
+print("&&&&&&&&&&&")
+print(len(padded))
 # 处理测试数据
 test_sequences = tokenizer.texts_to_sequences(testing_sentences)
 test_padded = pad_sequences(test_sequences, maxlen=max_length)
@@ -76,13 +77,27 @@ test_padded = pad_sequences(test_sequences, maxlen=max_length)
         句子中意思相近的单词，往往彼此之间距离比较近；电影评论中枯燥、乏味多一起出现；
         因此我们可以在高维空间找到一组相似的向量，来表示情感相同的单词（注意是每个单词有一个向量），这些向量因为相似的标签而聚集在一起，
         所以神经网络可以学习这些向量，建立向量和标签之间的联系。向量成为了单词和单词情感之间的联系纽带。
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+embedding (Embedding)        (None, 120, 16)           160000    
+_________________________________________________________________
+flatten (Flatten)            (None, 1920)              0         
+_________________________________________________________________
+dense (Dense)                (None, 6)                 11526     
+_________________________________________________________________
+dense_1 (Dense)              (None, 1)                 7         
+=================================================================
+Total params: 171,533
+Trainable params: 171,533
 """
 model = tf.keras.Sequential([
     tf.keras.layers.Embedding(vocab_size, embedding_dim, input_length=max_length),# 嵌入层的结果是一个二维的数组，句子长度*向量维度
-    keras.layers.Flatten(), # 平坦层展平
-    keras.layers.GlobalAveragePooling1D(), # 全局平均池化层， 在每个向量的维度上取平均值输出，得到模型更加简洁，速度更快
-    keras.layers.Dense(6, activation="relu"),
-    keras.layers.Dense(1, activation=tf.nn.sigmoid)
+    tf.keras.layers.Flatten(), # 平坦层展平
+    # tf.keras.layers.GlobalAveragePooling1D(), # 全局平均池化层， 在每个向量的维度上取平均值输出，得到模型更加简洁，速度更快
+    tf.keras.layers.Dense(6, activation="relu"),
+    tf.keras.layers.Dense(1, activation=tf.nn.sigmoid)
 ])
 # compile 编译模型
 model.compile(loss=tf.losses.binary_crossentropy, optimizer='adam', metrics=["acc"]) # optimizer常用adam表示

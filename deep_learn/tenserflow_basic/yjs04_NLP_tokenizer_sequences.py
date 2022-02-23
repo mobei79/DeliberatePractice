@@ -35,7 +35,7 @@ sentences = [
 #   建立一个100个单词的“词典”；“分词器”选择“词频”最高的100个单词作为词典，并编码。
 #   oov_token 用于代替”未登录词“
 #   词频低的单词对神经网络训练影响较小，但是会极大地增加训练时间，需要仔细设置该参数。
-tokenizer = Tokenizer(num_words=100, oov_token="<OOV")
+tokenizer = Tokenizer(num_words=100, oov_token="<OOV>")
 tokenizer.fit_on_texts(sentences) # 编码
 word_index = tokenizer.word_index   # 输出键值对。
 print("#"*10+"word_index ")

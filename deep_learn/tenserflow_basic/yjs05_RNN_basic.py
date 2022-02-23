@@ -40,12 +40,9 @@ import tensorflow_datasets as tfds
 # 加载数据 这里使用的是subword8k版本，也就是子词数据集
 imdb, info = tfds.load("imdb_reviews/subwords8k", with_info=True, as_supervised=True)
 train_data, test_data = imdb['train'], imdb["test"]
-
-
-
 tokenizer = info.features['text'].encoder  # 通过这个语句获得一个子词的分词器，这是一个预训练好的子词分类器。【这里的数据是已经分词后的】
 # print(tokenizer.subwords)  # 查看分词器的词汇表
-
+print(tokenizer.vocab_size)
 # 查看她如何对字符串进行编码的
 # sample_string = "TensorFlow, from basics to mastery"
 # tokenized_string = tokenizer.encode(sample_string)  # 编码
@@ -58,7 +55,6 @@ tokenizer = info.features['text'].encoder  # 通过这个语句获得一个子�
 
 BUFFER_SIZE = 1000 #25000
 BATCH_SIZE = 1
-
 train_data = train_data.shuffle(BUFFER_SIZE)
 train_data = train_data.padded_batch(BATCH_SIZE)
 test_data = test_data.padded_batch(BATCH_SIZE)
@@ -76,21 +72,62 @@ test_data = test_data.padded_batch(BATCH_SIZE)
 # model.summary()
 
 
-"""
+""" LSTM
     使用tf.keras.layers.LSTM(64)来实现LSTM层，64为LSTM输出维度；
     Bidirctional 使得LSTM可以记忆两个方向上下文信息，双向LSTM层输出维度为128;
     当LSTM层衔接时，需要设置前一个LSTM的return_sequences=True，可以确保上一层输出，可以与下一层输入相匹配。
+
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+embedding (Embedding)        (None, None, 64)          523840    
+_________________________________________________________________
+bidirectional (Bidirectional (None, None, 128)         66048     
+_________________________________________________________________
+bidirectional_1 (Bidirection (None, 64)                41216     
+_________________________________________________________________
+dense (Dense)                (None, 64)                4160      
+_________________________________________________________________
+dense_1 (Dense)              (None, 1)                 65        
+=================================================================
+Total params: 635,329
+Trainable params: 635,329
+Non-trainable params: 0
+_________________________________________________________________
+
+Process finished with exit code -1
+
 """
-embedding_dim = 64
-model = tf.keras.Sequential([
-    tf.keras.layers.Embedding(tokenizer.vocab_size, embedding_dim),
-    tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(64, return_sequences=True)),
-    tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(32)),
-    # tf.keras.layers.GlobalAveragePooling1D(),
-    tf.keras.layers.Dense(6, activation="relu"),
-    tf.keras.layers.Dense(1, activation="sigmoid")
-])
-model.summary()
+# embedding_dim = 64
+# model = tf.keras.Sequential([
+#     tf.keras.layers.Embedding(tokenizer.vocab_size, embedding_dim), #vocab_size=8185, 输出8185*64
+#     tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(64, return_sequences=True)), #
+#     tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(32)),
+#     # tf.keras.layers.GlobalAveragePooling1D(),
+#     tf.keras.layers.Dense(64, activation="relu"),
+#     tf.keras.layers.Dense(1, activation="sigmoid")
+# ])
+# model.summary()
+
+
+"""RNN
+    Embedding函数的三个参数： 本质上是对输入数据降维的过程；
+        input_dim: 指输出输入数据的维度【字典的维度】，也就是一个单词是
+        output_dim:
+        input_length:
+
+"""
+# embedding_dim = 64
+# model = tf.keras.Sequential([
+#     tf.keras.layers.Embedding(tokenizer.vocab_size, 100, input_length=80),  # vocab_size=8185, 输出8185*64
+#     tf.keras.layers.SimpleRNN(64, return_sequences=True, unroll=True),  #
+#     tf.keras.layers.SimpleRNN(64, unroll=True),
+#     # tf.keras.layers.GlobalAveragePooling1D(),
+#     tf.keras.layers.Dense(64, activation="relu"),
+#     tf.keras.layers.Dense(1, activation="sigmoid")
+# ])
+# model.summary()
 
 """
 模型训练

@@ -26,11 +26,11 @@ print(tf.__version__)
 train_datagen = keras.preprocessing.image.ImageDataGenerator(rescale=1/255) #scale把数值压缩在0-1
 validation_datagen = keras.preprocessing.image.ImageDataGenerator(rescale=1/255)
 
-train_generator = train_datagen.flow_from_directory("D:\Program Files\pythonwork\DeliberatePractice\deep_learn\\tenserflow_basic\datas\\validation-horse-or-human-mini/",
+train_generator = train_datagen.flow_from_directory("D:\Program Files\pythonwork\dataset\DeliberatePractice\deep_learn\\validation-horse-or-human-mini/",
                                                     target_size=(300,300),  # 输出的size
                                                     batch_size=32,          # 每一批是多少
                                                     class_mode='binary')    # 二分类
-validation_generator = train_datagen.flow_from_directory("D:\Program Files\pythonwork\DeliberatePractice\deep_learn\\tenserflow_basic\datas\horse-or-human-mini/",
+validation_generator = train_datagen.flow_from_directory("D:\Program Files\pythonwork\dataset\DeliberatePractice\deep_learn\\horse-or-human-mini/",
                                                     target_size=(300,300),
                                                     batch_size=32,
                                                     class_mode='binary')
@@ -45,17 +45,17 @@ validation_generator = train_datagen.flow_from_directory("D:\Program Files\pytho
 
 # model = keras.Sequential([])
 model = tf.keras.models.Sequential([
-    tf.keras.layers.Conv2D(16, (3,3), activation='relu', input_shape=(300,300,3)), #(None, 298, 298, 16) 448=(3*3+1)*16  448
+    tf.keras.layers.Conv2D(16, (3,3), activation='relu', input_shape=(300,300,3)), #(None, 298, 298, 16) 448=(3*3*3+1)*16  448
     tf.keras.layers.MaxPooling2D(2, 2), # (None, 149, 149, 16)
-    tf.keras.layers.Conv2D(32, (3,3), activation='relu', input_shape=(300,300,3)),  #(None, 147, 147, 32) 4640=(3*3*16+1)*32
+    tf.keras.layers.Conv2D(32, (3,3), activation='relu'),  #(None, 147, 147, 32) 4640=(3*3*16+1)*32
     tf.keras.layers.MaxPooling2D(2, 2), #(None, 73, 73, 32)
-    tf.keras.layers.Conv2D(64, (3,3), activation='relu', input_shape=(300,300,3)),  #(None, 71, 71, 64)  18496= (3*3*32+1)*64
-    tf.keras.layers.MaxPooling2D(2, 2), #（None，35，35，64）
+    # tf.keras.layers.Conv2D(64, (3,3), activation='relu'),  #(None, 71, 71, 64)  18496= (3*3*32+1)*64
+    # tf.keras.layers.MaxPooling2D(2, 2), #（None，35，35，64）
     tf.keras.layers.Flatten(),  # （None, 78400）
     tf.keras.layers.Dense(512, activation='relu'),  #(None, 512)  4014312 = (78400 + 1)*512
     keras.layers.Dense(1, activation='sigmoid')     # 二分类问题， 输出0或者1 (None, 1) 513个参数
 ])
-# model.summary()
+model.summary()
 model.compile(loss=tf.losses.binary_crossentropy,
               optimizer=tf.keras.optimizers.RMSprop(lr=0.001),
               metrics=['acc'])
