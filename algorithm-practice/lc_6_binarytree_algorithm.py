@@ -33,7 +33,7 @@ class BinaryTree:
             是否对称；1后序，比较根节点的左右节点是不是相互翻转；2
             树的深度；
             节点数目；
-            所有路径： 递归迭代回溯
+            所有路径： 递归迭代回溯+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             是否平衡
             求左叶子之和
             求最小角的值
@@ -71,7 +71,6 @@ class TreeNode:
             rst.append(cur.val)
             traversal(cur.left, rst)
             traversal(cur.rigth, rst)
-
         rst = []
         traversal(root, rst)
 
@@ -144,7 +143,7 @@ class TreeNode:
         while cur != None or st:
             if cur != None: # 不断压入堆栈，直到压倒最左边节点，让后进入else
                 st.append(cur)
-                cur = st.left
+                cur = cur.left
             else:
                 cur = st.pop() # 没有左节点了，弹出当前节点处理，然后继续判断右节点的子树。
                 rst.append(cur.val)
@@ -189,6 +188,7 @@ class TreeNode:
                     标记当前节点已经访问
         :param root:
         :return:
+
         """
         st = []
         rst = []

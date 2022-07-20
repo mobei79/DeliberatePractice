@@ -13,16 +13,18 @@ from typing import List  #  类型提示支持
 数组是存储在连续内存空间上相同类型数据的集合，可以通过”下标索引“进行访问。
 """
 
-"""
-二分查找
-704. 二分查找
-给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target  ，写一个函数搜索 nums 中的 target，
-如果目标值存在返回下标，否则返回 -1。
-思路解法：
-    二分查找适用场景：有序的数组、无重复（有重复找到的下标可能不唯一）、查找应用；
-"""
+
 class Solution:
+    """
+    二分查找
+    704. 二分查找
+    给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target  ，写一个函数搜索 nums 中的 target，
+    如果目标值存在返回下标，否则返回 -1。
+    思路解法：
+        二分查找适用场景：有序的数组、无重复（有重复找到的下标可能不唯一）、查找应用；
+    """
     def search_zbyk(self, nums: List[int], target: int) -> int:
+
         # 左闭右开
         left = 0
         right = len(nums) # 左闭右开所以不用减1
@@ -387,5 +389,6 @@ class Solution:
 
 if __name__=="__main__":
     solution = Solution()
-    rst = solution.sortedSquares_violence([0,1,2,2,3,0,4,2])
+    rst = solution.search_zbyk([-1,0,3,5,9,12], 13)
+    # rst = solution.sortedSquares_violence([0,1,2,2,3,0,4,2])
     print(rst)

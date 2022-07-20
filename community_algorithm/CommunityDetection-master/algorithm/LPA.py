@@ -68,4 +68,4 @@ if __name__ == '__main__':
     algorithm = LPA(G)
     communities = algorithm.execute()
     for community in communities:
-        print community
+        print(community)

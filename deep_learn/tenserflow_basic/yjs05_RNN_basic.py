@@ -116,18 +116,17 @@ Process finished with exit code -1
         input_dim: 指输出输入数据的维度【字典的维度】，也就是一个单词是
         output_dim:
         input_length:
-
 """
-# embedding_dim = 64
-# model = tf.keras.Sequential([
-#     tf.keras.layers.Embedding(tokenizer.vocab_size, 100, input_length=80),  # vocab_size=8185, 输出8185*64
-#     tf.keras.layers.SimpleRNN(64, return_sequences=True, unroll=True),  #
-#     tf.keras.layers.SimpleRNN(64, unroll=True),
-#     # tf.keras.layers.GlobalAveragePooling1D(),
-#     tf.keras.layers.Dense(64, activation="relu"),
-#     tf.keras.layers.Dense(1, activation="sigmoid")
-# ])
-# model.summary()
+embedding_dim = 64
+model = tf.keras.Sequential([
+    tf.keras.layers.Embedding(tokenizer.vocab_size, 100, input_length=80),  # vocab_size=8185, 输出8185*64
+    tf.keras.layers.SimpleRNN(64, return_sequences=True, unroll=True),  #
+    tf.keras.layers.SimpleRNN(64, unroll=True),
+    # tf.keras.layers.GlobalAveragePooling1D(),
+    # tf.keras.layers.Dense(64, activation="relu"),
+    tf.keras.layers.Dense(1, activation="sigmoid")
+])
+model.summary()
 
 """
 模型训练

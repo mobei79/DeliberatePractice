@@ -14,30 +14,30 @@ def getDateDelta(basetime,delta):
 	d1 = datetime.datetime(string.atoi(basetime[0:4]),string.atoi(basetime[5:7]),string.atoi(basetime[8:10]))
 	d2 = d1 + datetime.timedelta(days = delta)
 	deltaDate = d2.strftime('%Y-%m-%d')
-	print deltaDate
+	print( deltaDate)
 	return deltaDate
 
 def find_max_date(dbName,tbName):
 	hql="show partitions %(dbName)s.%(tbName)s"%{'dbName':dbName,'tbName':tbName}
 	cmd='hive -e "%s"'%hql             #hive -e "show partition **"	采用命令行直接执行hql语句
-    print cmd
+	print(cmd)
 	res=os.popen(cmd).readlines()    #创建一个管道，打开一个进程，并调用shell、	cmd包含的命令，
 	date_list=[]
 	for r in res:
 		date_list.append(r.strip('\r\n').split('=')[1])              #['2018-08-21', '2018-08-20', '2018-08-19']   返回分区信息
 	date_list.sort(reverse=True)
-	print date_list
+	print (date_list)
 	for date in date_list:		#对于每一个分区
 		hql="select 1 from %(dbName)s.%(tbName)s where dt='%(date)s' limit 1"%{'dbName':dbName,'tbName':tbName,'date':date}		#limit 1
 		cmd='hive -e "%s"'%hql
-    	print cmd
+    	print (cmd)
     	res=os.popen(cmd).readlines()
     	if not [] == res:
     		return date 
-    return 'error'
+	return 'error'
 
 def createTable(dbName,tbName,delimiter):
-	print 'dbName=%s'%dbName,'tbName=%s'%tbName,'delimiter=%s'%delimiter
+	print ('dbName=%s'%dbName,'tbName=%s'%tbName,'delimiter=%s'%delimiter)
 	hql="""
 			use %(dbName)s;
 			create table if not exists %(tbName)s 
@@ -58,7 +58,7 @@ def createTable(dbName,tbName,delimiter):
 def insertTable(dbName,tbName,):
 	end_date=ht.partition_value
 	max_date=find_max_date('dwd','dwd_user_borrower_user_account_full')  #找到最大的分布？？？
- 	print 'dbName=%s'%dbName,'tbName=%s'%tbName,'end_date=%s'%end_date,'max_date=%s'%max_date
+ 	print ('dbName=%s'%dbName,'tbName=%s'%tbName,'end_date=%s'%end_date,'max_date=%s'%max_date)
 	hql="""
 			use %(dbName)s;
 			insert overwrite table %(tbName)s partition(dt='%(end_date)s')
@@ -491,9 +491,9 @@ if __name__=='__main__':
 	dbName='mining'
 	tbName='dm_loan_usr_relation_td'
 	delimiter='\001'
-	print 'dbName=%s'%dbName,'tbName=%s'%tbName,'delimiter=%s'%delimiter
-	print 'begin...'
+	print ('dbName=%s'%dbName,'tbName=%s'%tbName,'delimiter=%s'%delimiter)
+	print ('begin...')
 	createTable(dbName,tbName,delimiter)
 	insertTable(dbName,tbName)
-	print 'success...'
+	print ('success...')
 

@@ -159,6 +159,8 @@ class DoublePoint:
 
 
 
+
+
 if __name__ == "__main__":
     so1 = Solution()
     so1.lengthOfLongestSubstring("121")
